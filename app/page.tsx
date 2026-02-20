@@ -122,7 +122,10 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ rewritten_resume: rewriteResult.rewritten_resume }),
       })
-      if (!res.ok) throw new Error('Download failed.')
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data.error || 'Download failed on server.')
+      }
       const blob = await res.blob()
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
