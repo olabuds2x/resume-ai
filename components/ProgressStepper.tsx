@@ -27,12 +27,12 @@ export default function ProgressStepper({ currentPass }: { currentPass: number }
                     animation: 'spin 1s linear infinite',
                 }} />
                 <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-                <h2 style={{ fontSize: 22, fontWeight: 700, marginBottom: 8 }}>
-                    Claude is working…
-                </h2>
-                <p style={{ color: 'var(--text-secondary)', fontSize: 14 }}>
-                    {STEPS.find(s => s.id === currentPass)?.description || 'Processing…'}
-                </p>
+                <div style={{ textTransform: 'uppercase', letterSpacing: '0.08em', fontSize: 12, fontWeight: 600, color: 'var(--text-secondary)', marginBottom: 12 }}>
+                    stay jiggy…
+                </div>
+                <div style={{ fontSize: 15, fontWeight: 500, color: 'var(--text-primary)' }}>
+                    {STEPS.find(s => s.id === currentPass)?.label}
+                </div>
             </div>
 
             {/* Steps */}

@@ -189,7 +189,7 @@ export default function Home() {
           <div style={{ textAlign: 'center', marginBottom: 64 }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.3)', borderRadius: 100, padding: '6px 16px', marginBottom: 24 }}>
               <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#7c3aed', display: 'inline-block' }} />
-              <span style={{ color: '#a78bfa', fontSize: 13, fontWeight: 500 }}>Powered by Claude claude-sonnet-4-6</span>
+              <span style={{ color: '#a78bfa', fontSize: 13, fontWeight: 500 }}>Powered by Tza</span>
             </div>
             <h1 style={{ fontSize: 'clamp(36px, 6vw, 64px)', fontWeight: 900, lineHeight: 1.1, marginBottom: 20 }}>
               Your resume,{' '}
