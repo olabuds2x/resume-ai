@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
 
         // ── Pass 3: Intelligent Rewrite ───────────────────────────────────────────
         const pass3Response = await client.messages.create({
-            model: 'claude-sonnet-4-6',
+            model: 'claude-3-5-haiku-20241022',
             max_tokens: 8000,
             system: PASS3_SYSTEM,
             messages: [

@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
 
         // ── Pass 1: JD Deconstruction ─────────────────────────────────────────────
         const pass1Response = await client.messages.create({
-            model: 'claude-sonnet-4-6',
+            model: 'claude-3-5-haiku-20241022',
             max_tokens: 2000,
             system: PASS1_SYSTEM,
             messages: [
@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
 
         // ── Pass 2: Gap Analysis ──────────────────────────────────────────────────
         const pass2Response = await client.messages.create({
-            model: 'claude-sonnet-4-6',
+            model: 'claude-3-5-haiku-20241022',
             max_tokens: 3000,
             system: PASS2_SYSTEM,
             messages: [
