@@ -19,8 +19,8 @@ export async function POST(req: NextRequest) {
 
         const filename =
             (rewritten_resume.name
-                ? rewritten_resume.name.replace(/\s+/g, '_') + '_optimized'
-                : 'resume_optimized') + '.docx'
+                ? rewritten_resume.name.replace(/\s+/g, '_') + '_ot'
+                : 'resume_ot') + '.docx'
 
         return new NextResponse(new Uint8Array(docxBuffer), {
             status: 200,

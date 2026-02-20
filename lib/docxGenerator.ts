@@ -11,6 +11,11 @@ import {
     convertInchesToTwip,
     LevelFormat,
     UnderlineType,
+    Table,
+    TableRow,
+    TableCell,
+    WidthType,
+    BorderStyle
 } from 'docx'
 import type { RewrittenResume, ResumeSection, ResumeExperience } from './types'
 
@@ -135,22 +140,57 @@ function renderSection(section: ResumeSection): Paragraph[] {
 function renderExperience(exp: ResumeExperience): Paragraph[] {
     const out: Paragraph[] = []
 
-    // Title - Company + dates (aligned right via tab)
+    // Title - Company (Left) + Dates (Right) using an invisible 100% width Table
     out.push(
-        new Paragraph({
-            tabStops: [
-                {
-                    type: "right",
-                    position: convertInchesToTwip(6.5), // Right margin for US Letter (8.5 - 2*1)
-                },
+        new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            borders: {
+                top: { style: BorderStyle.NONE, size: 0, color: "AUTO" },
+                bottom: { style: BorderStyle.NONE, size: 0, color: "AUTO" },
+                left: { style: BorderStyle.NONE, size: 0, color: "AUTO" },
+                right: { style: BorderStyle.NONE, size: 0, color: "AUTO" },
+                insideHorizontal: { style: BorderStyle.NONE, size: 0, color: "AUTO" },
+                insideVertical: { style: BorderStyle.NONE, size: 0, color: "AUTO" },
+            },
+            rows: [
+                new TableRow({
+                    children: [
+                        new TableCell({
+                            borders: {
+                                top: { style: BorderStyle.NONE, size: 0 },
+                                bottom: { style: BorderStyle.NONE, size: 0 },
+                                left: { style: BorderStyle.NONE, size: 0 },
+                                right: { style: BorderStyle.NONE, size: 0 },
+                            },
+                            children: [
+                                new Paragraph({
+                                    children: [
+                                        new TextRun({ text: exp.title, bold: true, size: FONT_SIZE, font: FONT }),
+                                        new TextRun({ text: ` \u2013 ${exp.company}`, size: FONT_SIZE, font: FONT, color: '555555' }),
+                                    ],
+                                }),
+                            ],
+                        }),
+                        new TableCell({
+                            borders: {
+                                top: { style: BorderStyle.NONE, size: 0 },
+                                bottom: { style: BorderStyle.NONE, size: 0 },
+                                left: { style: BorderStyle.NONE, size: 0 },
+                                right: { style: BorderStyle.NONE, size: 0 },
+                            },
+                            children: [
+                                new Paragraph({
+                                    alignment: AlignmentType.RIGHT,
+                                    children: [
+                                        new TextRun({ text: exp.dates, size: FONT_SIZE, font: FONT }),
+                                    ],
+                                }),
+                            ],
+                        }),
+                    ],
+                }),
             ],
-            children: [
-                new TextRun({ text: exp.title, bold: true, size: FONT_SIZE, font: FONT }),
-                new TextRun({ text: ` \u2013 ${exp.company}`, size: FONT_SIZE, font: FONT, color: '555555' }),
-                new TextRun({ text: '\t' }), // Tab to push dates to the right
-                new TextRun({ text: exp.dates, size: FONT_SIZE, font: FONT }),
-            ],
-        })
+        }) as unknown as Paragraph // Push table into paragraph array to maintain flow
     )
 
     // Bullets
