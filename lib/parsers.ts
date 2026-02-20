@@ -34,6 +34,7 @@ async function parsePdf(buffer: Buffer): Promise<string> {
     const pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs' as string)
 
     const uint8Array = new Uint8Array(buffer)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const loadingTask = (pdfjsLib as any).getDocument({ data: uint8Array })
     const pdf = await loadingTask.promise
 
