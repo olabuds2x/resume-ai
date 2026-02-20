@@ -127,7 +127,7 @@ export default function Home() {
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
-      a.download = (rewriteResult.rewritten_resume.name?.replace(/\s+/g, '_') || 'resume') + '_optimized.docx'
+      a.download = (rewriteResult.rewritten_resume.name?.replace(/\s+/g, '_') || 'resume') + '_ot.docx'
       a.click()
       URL.revokeObjectURL(url)
     } catch (err) {
