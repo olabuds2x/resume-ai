@@ -156,6 +156,7 @@ function renderExperience(exp: ResumeExperience): Paragraph[] {
                 new TableRow({
                     children: [
                         new TableCell({
+                            width: { size: 75, type: WidthType.PERCENTAGE },
                             borders: {
                                 top: { style: BorderStyle.NONE, size: 0 },
                                 bottom: { style: BorderStyle.NONE, size: 0 },
@@ -172,6 +173,7 @@ function renderExperience(exp: ResumeExperience): Paragraph[] {
                             ],
                         }),
                         new TableCell({
+                            width: { size: 25, type: WidthType.PERCENTAGE },
                             borders: {
                                 top: { style: BorderStyle.NONE, size: 0 },
                                 bottom: { style: BorderStyle.NONE, size: 0 },
