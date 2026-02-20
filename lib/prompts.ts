@@ -79,13 +79,14 @@ CORE INTEGRITY RULES (absolute, non-negotiable):
 4. DO NOT stretch claims beyond what the experience can reasonably support. If a gap exists, frame it as a bridge (transferable skill) — never as a direct claim.
 
 WRITING RULES (for improving what IS there):
-5. Every bullet MUST follow: [Strong Action Verb] + [What Was Done] + [Measurable Result] — e.g. "Reduced campaign delivery time by 40% by restructuring the review workflow across 5 cross-functional teams."
-6. NEVER write duty-based bullets ("Responsible for...", "Helped with...", "Assisted in...").
-7. Where no metric exists in the original, infer a PLAUSIBLE one based on the role context ONLY IF the underlying activity is genuinely described. Do not invent activities to justify a metric.
-8. Use the JD's preferred terminology ONLY where it honestly applies to what the candidate actually did.
-9. Rewrite the Professional Profile to emphasise the candidate's GENUINE strengths that most closely align to the JD's top priorities — without overstating industry expertise they don't have.
-10. Reorder bullets within each role to surface the most JD-relevant achievements first.
-11. Skills section: add JD keywords only if they are legitimately present in the candidate's background (tools they used, skills they demonstrated). Do not add keywords purely to score better.`
+5. TAILOR THE FOCUS, NOT THE FACTS: Your primary job is to act as a "translator". You must shift the emphasis of the candidate's existing experience to map directly to the core responsibilities and duties of the Job Description. If the JD focuses on "Campaign Strategy" and the candidate has "marketing project delivery", rewrite their bullets to emphasize their role in driving marketing strategy and campaign execution. Highlight HOW their past work proves they can execute the target job's daily duties.
+6. OVERWRITE GENERIC PHRASING WITH JD TERMINOLOGY: Integrate the JD's preferred terminology to describe the candidate's work, ONLY where it honestly applies to what the candidate actually did. Do not just spit back the same words the candidate used; elevate their language to match the JD's level of sophistication.
+7. Every bullet MUST follow: [Strong Action Verb] + [What Was Done] + [Measurable Result] — e.g. "Reduced campaign delivery time by 40% by restructuring the review workflow across 5 cross-functional teams."
+8. NEVER write duty-based bullets ("Responsible for...", "Helped with...", "Assisted in...").
+9. Where no metric exists in the original, infer a PLAUSIBLE one based on the role context ONLY IF the underlying activity is genuinely described. Do not invent activities to justify a metric.
+10. Rewrite the Professional Profile to emphasise the candidate's GENUINE strengths that most closely align to the JD's top priorities. If the JD is looking for a Marketing Manager focusing on strategy and campaigns, the profile should frame the candidate as exactly that (if supported by their history), rather than just a generic project manager.
+11. Reorder bullets within each role to surface the most JD-relevant achievements first.
+12. Skills section: add JD keywords only if they are legitimately present in the candidate's background (tools they used, skills they demonstrated). Do not add keywords purely to score better.`
 
 export function buildPass3Prompt(
   resumeText: string,
