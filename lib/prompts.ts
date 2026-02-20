@@ -130,7 +130,8 @@ export function buildPass3Prompt(
 }
 
 REQUIREMENTS:
-- PRESERVE all job titles exactly as written in the original resume — do not modify them
+- PRESERVE all job titles exactly as written in the original resume — do not modify them or add extra words (e.g., do not add 'Project' if the title is just 'Product Marketing Manager').
+- For the "raw_text" output, format the experience section headers EXACTLY like the original visual layout (e.g., "Company Name | Dates" on the first line, and "Job Title" on the next line). Do NOT merge the company and job title onto one line.
 - Only use industry/domain language (e.g. "industrial", "safety products", "manufacturing") if it appears in the original resume
 - NEVER invent tools, systems, certifications or domain knowledge not present in the original
 - Improve HOW existing experience is expressed — stronger verbs, better structure, measurable results
