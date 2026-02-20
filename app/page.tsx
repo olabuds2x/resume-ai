@@ -196,7 +196,7 @@ export default function Home() {
               <span className="gradient-text">intelligently optimized</span>
             </h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: 18, maxWidth: 600, margin: '0 auto', lineHeight: 1.7 }}>
-              Paste a job description, upload your resume. Claude runs 3 AI passes to rewrite every bullet with achievement-based language and deliver an ATS-ready DOCX.
+              Paste a job description, upload your resume. Tza runs 3 AI passes to rewrite every bullet with achievement-based language and deliver an ATS-ready DOCX.
             </p>
           </div>
 
@@ -257,7 +257,7 @@ export default function Home() {
             {/* Job Description */}
             <div className="glass-card" style={{ padding: 28 }}>
               <h2 style={{ fontSize: 15, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 4 }}>Job Description</h2>
-              <p style={{ color: 'var(--text-secondary)', fontSize: 13, marginBottom: 20 }}>Paste the full JD — Claude will extract all requirements</p>
+              <p style={{ color: 'var(--text-secondary)', fontSize: 13, marginBottom: 20 }}>Paste the full JD — Tza will extract all requirements</p>
               <textarea
                 className="input-base"
                 value={jobDescription}
@@ -284,7 +284,7 @@ export default function Home() {
               ✨ Analyze &amp; Optimize
             </button>
             <p style={{ color: 'var(--text-muted)', fontSize: 12, marginTop: 12 }}>
-              Runs 3 Claude AI passes · Typically 30–60 seconds
+              Runs 3 Tza AI passes · Typically 30–60 seconds
             </p>
           </div>
         </div>
