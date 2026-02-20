@@ -166,8 +166,8 @@ function renderExperience(exp: ResumeExperience): Paragraph[] {
                             children: [
                                 new Paragraph({
                                     children: [
-                                        new TextRun({ text: exp.title, bold: true, size: FONT_SIZE, font: FONT }),
-                                        new TextRun({ text: ` \u2013 ${exp.company}`, size: FONT_SIZE, font: FONT, color: '555555' }),
+                                        new TextRun({ text: exp.title || '', bold: true, size: FONT_SIZE, font: FONT }),
+                                        new TextRun({ text: ` \u2013 ${exp.company || ''}`, size: FONT_SIZE, font: FONT, color: '555555' }),
                                     ],
                                 }),
                             ],
@@ -184,7 +184,7 @@ function renderExperience(exp: ResumeExperience): Paragraph[] {
                                 new Paragraph({
                                     alignment: AlignmentType.RIGHT,
                                     children: [
-                                        new TextRun({ text: exp.dates, size: FONT_SIZE, font: FONT }),
+                                        new TextRun({ text: exp.dates || '', size: FONT_SIZE, font: FONT }),
                                     ],
                                 }),
                             ],
