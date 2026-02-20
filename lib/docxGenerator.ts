@@ -135,20 +135,21 @@ function renderSection(section: ResumeSection): Paragraph[] {
 function renderExperience(exp: ResumeExperience): Paragraph[] {
     const out: Paragraph[] = []
 
-    // Company + dates
+    // Title - Company + dates (aligned right via tab)
     out.push(
         new Paragraph({
-            children: [
-                new TextRun({ text: exp.company, bold: true, size: FONT_SIZE, font: FONT }),
-                new TextRun({ text: `  |  ${exp.dates}`, size: FONT_SIZE, font: FONT, color: '555555' }),
+            tabStops: [
+                {
+                    type: "right",
+                    position: convertInchesToTwip(6.5), // Right margin for US Letter (8.5 - 2*1)
+                },
             ],
-        })
-    )
-
-    // Title
-    out.push(
-        new Paragraph({
-            children: [new TextRun({ text: exp.title, italics: true, size: FONT_SIZE, font: FONT })],
+            children: [
+                new TextRun({ text: exp.title, bold: true, size: FONT_SIZE, font: FONT }),
+                new TextRun({ text: ` \u2013 ${exp.company}`, size: FONT_SIZE, font: FONT, color: '555555' }),
+                new TextRun({ text: '\t' }), // Tab to push dates to the right
+                new TextRun({ text: exp.dates, size: FONT_SIZE, font: FONT }),
+            ],
         })
     )
 
