@@ -135,10 +135,10 @@ function renderSection(section: ResumeSection): Paragraph[] {
 function renderExperience(exp: ResumeExperience): Paragraph[] {
     const out: Paragraph[] = []
 
-    // Line 1: Job Title (Bold)
+    // Line 1: Job Title (Bold) — extra top spacing separates roles visually
     out.push(
         new Paragraph({
-            spacing: { before: 160 },
+            spacing: { before: 320 },
             children: [
                 new TextRun({ text: exp.title || '', bold: true, size: FONT_SIZE, font: FONT }),
             ],
