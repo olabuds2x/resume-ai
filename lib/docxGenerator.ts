@@ -10,7 +10,12 @@ import {
     AlignmentType,
     convertInchesToTwip,
     LevelFormat,
-    UnderlineType
+    UnderlineType,
+    Table,
+    TableRow,
+    TableCell,
+    WidthType,
+    BorderStyle
 } from 'docx'
 import type { RewrittenResume, ResumeSection, ResumeExperience } from './types'
 
@@ -71,8 +76,8 @@ export async function generateDocx(resume: RewrittenResume): Promise<Buffer> {
     return Buffer.from(buffer)
 }
 
-function buildChildren(resume: RewrittenResume): Paragraph[] {
-    const paras: Paragraph[] = []
+function buildChildren(resume: RewrittenResume): (Paragraph | Table)[] {
+    const paras: (Paragraph | Table)[] = []
 
     // Name
     paras.push(
@@ -112,8 +117,8 @@ function buildChildren(resume: RewrittenResume): Paragraph[] {
     return paras
 }
 
-function renderSection(section: ResumeSection): Paragraph[] {
-    const out: Paragraph[] = [heading(section.title.toUpperCase())]
+function renderSection(section: ResumeSection): (Paragraph | Table)[] {
+    const out: (Paragraph | Table)[] = [heading(section.title.toUpperCase())]
 
     if (section.type === 'experience' && Array.isArray(section.content)) {
         for (const exp of section.content as ResumeExperience[]) {
@@ -132,29 +137,64 @@ function renderSection(section: ResumeSection): Paragraph[] {
     return out
 }
 
-function renderExperience(exp: ResumeExperience): Paragraph[] {
-    const out: Paragraph[] = []
+function renderExperience(exp: ResumeExperience): (Paragraph | Table)[] {
+    const out: (Paragraph | Table)[] = []
 
-    // Line 1: Job Title (Bold)
-    out.push(
-        new Paragraph({
-            spacing: { before: 120 },
-            children: [
-                new TextRun({ text: exp.title || '', bold: true, size: FONT_SIZE, font: FONT }),
-            ],
-        })
-    )
+    // Create an invisible layout table
+    const table = new Table({
+        width: { size: 100, type: WidthType.PERCENTAGE },
+        borders: {
+            top: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+            bottom: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+            left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+            right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+            insideHorizontal: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+            insideVertical: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+        },
+        rows: [
+            new TableRow({
+                children: [
+                    new TableCell({
+                        children: [
+                            new Paragraph({
+                                children: [
+                                    new TextRun({ text: exp.title || '', bold: true, size: FONT_SIZE, font: FONT }),
+                                    new TextRun({ text: ` – ${exp.company || ''}`, size: FONT_SIZE, font: FONT, color: '222222' }),
+                                ],
+                            }),
+                        ],
+                        borders: {
+                            top: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                            bottom: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                            left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                            right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                        }
+                    }),
+                    new TableCell({
+                        children: [
+                            new Paragraph({
+                                alignment: AlignmentType.RIGHT,
+                                children: [
+                                    new TextRun({ text: exp.dates || '', size: FONT_SIZE, font: FONT, color: '555555' }),
+                                ],
+                            }),
+                        ],
+                        borders: {
+                            top: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                            bottom: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                            left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                            right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                        }
+                    }),
+                ],
+            }),
+        ],
+    })
 
-    // Line 2: Company Name (Bold) | Dates (Grey)
-    out.push(
-        new Paragraph({
-            spacing: { after: 60 },
-            children: [
-                new TextRun({ text: exp.company || '', bold: true, size: FONT_SIZE, font: FONT }),
-                new TextRun({ text: `  |  ${exp.dates || ''}`, size: FONT_SIZE, font: FONT, color: '555555' }),
-            ],
-        })
-    )
+    out.push(new Paragraph({ spacing: { before: 120 } })) // spacer above table
+    out.push(table as unknown as Paragraph)
+    // Typescript hack: out is Paragraph[] but we push Table. Actually, docx Document sections children can take (Paragraph | Table).
+    // Let me fix the out[] return type instead!
 
     // Bullets
     for (const b of exp.bullets ?? []) {
