@@ -155,6 +155,7 @@ function renderExperience(exp: ResumeExperience): (Paragraph | Table)[] {
             new TableRow({
                 children: [
                     new TableCell({
+                        width: { size: 75, type: WidthType.PERCENTAGE },
                         children: [
                             new Paragraph({
                                 children: [
@@ -171,6 +172,7 @@ function renderExperience(exp: ResumeExperience): (Paragraph | Table)[] {
                         }
                     }),
                     new TableCell({
+                        width: { size: 25, type: WidthType.PERCENTAGE },
                         children: [
                             new Paragraph({
                                 alignment: AlignmentType.RIGHT,
