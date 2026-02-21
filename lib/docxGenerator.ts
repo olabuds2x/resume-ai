@@ -10,9 +10,7 @@ import {
     AlignmentType,
     convertInchesToTwip,
     LevelFormat,
-    UnderlineType,
-    TabStopType,
-    TabStopPosition
+    UnderlineType
 } from 'docx'
 import type { RewrittenResume, ResumeSection, ResumeExperience } from './types'
 
@@ -137,20 +135,23 @@ function renderSection(section: ResumeSection): Paragraph[] {
 function renderExperience(exp: ResumeExperience): Paragraph[] {
     const out: Paragraph[] = []
 
-    // Title - Company + dates (aligned right via tab)
+    // Line 1: Job Title (Bold)
     out.push(
         new Paragraph({
-            tabStops: [
-                {
-                    type: TabStopType.RIGHT,
-                    position: convertInchesToTwip(7), // 8.5" width - (0.75" left + 0.75" right margins) = 7"
-                },
-            ],
+            spacing: { before: 120 },
             children: [
                 new TextRun({ text: exp.title || '', bold: true, size: FONT_SIZE, font: FONT }),
-                new TextRun({ text: ` \u2013 ${exp.company || ''}`, size: FONT_SIZE, font: FONT, color: '555555' }),
-                new TextRun({ text: '\t' }), // Tab character pushes the next run to the right stop
-                new TextRun({ text: exp.dates || '', size: FONT_SIZE, font: FONT }),
+            ],
+        })
+    )
+
+    // Line 2: Company Name (Bold) | Dates (Grey)
+    out.push(
+        new Paragraph({
+            spacing: { after: 60 },
+            children: [
+                new TextRun({ text: exp.company || '', bold: true, size: FONT_SIZE, font: FONT }),
+                new TextRun({ text: `  |  ${exp.dates || ''}`, size: FONT_SIZE, font: FONT, color: '555555' }),
             ],
         })
     )

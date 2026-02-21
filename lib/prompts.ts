@@ -123,7 +123,12 @@ export function buildPass3Prompt(
     {
       "type": "education",
       "title": "Education",
-      "content": "Degree, Institution, Year\\nCertification, Issuer, Year"
+      "content": "Degree, Institution, Year"
+    },
+    {
+      "type": "certifications",
+      "title": "Certifications",
+      "content": "Certification Name, Issuer, Year (newline-separated)"
     }
   ],
   "raw_text": "full rewritten resume as plain text for diff comparison"
@@ -131,7 +136,7 @@ export function buildPass3Prompt(
 
 REQUIREMENTS:
 - PRESERVE all job titles exactly as written in the original resume — do not modify them or add extra words (e.g., do not add 'Project' if the title is just 'Product Marketing Manager').
-- For the "raw_text" output, format the experience section headers EXACTLY like the original visual layout (e.g., "Job Title – Company Name" spaced from "Dates" on the same line). Do NOT put the job title on a separate second line.
+- For the "raw_text" output, format the experience section headers EXACTLY like this robust layout: "Job Title" on line 1, and "Company Name | Dates" on line 2.
 - Only use industry/domain language (e.g. "industrial", "safety products", "manufacturing") if it appears in the original resume
 - NEVER invent tools, systems, certifications or domain knowledge not present in the original
 - Improve HOW existing experience is expressed — stronger verbs, better structure, measurable results
