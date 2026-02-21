@@ -30,8 +30,10 @@ export async function parseResumeBuffer(
 }
 
 async function parsePdf(buffer: Buffer): Promise<string> {
+    // Import the internal module directly to bypass pdf-parse's self-test,
+    // which tries to open ./test/data/05-versions-space.pdf and crashes on Vercel.
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const pdfParse = require('pdf-parse')
+    const pdfParse = require('pdf-parse/lib/pdf-parse.js')
     const data = await pdfParse(buffer)
     return data.text
 }
