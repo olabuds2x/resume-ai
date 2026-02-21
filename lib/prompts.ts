@@ -139,6 +139,7 @@ REQUIREMENTS:
 - For the "raw_text" output, format the experience section headers EXACTLY like this robust layout: "Job Title" on line 1, and "Company Name | Dates" on line 2.
 - Only use industry/domain language (e.g. "industrial", "safety products", "manufacturing") if it appears in the original resume
 - NEVER invent tools, systems, certifications or domain knowledge not present in the original
+- COMPREHENSIVELY OMIT any section from the JSON array (like "certifications") if the candidate has absolutely none. DO NOT output a section with "None" or "N/A" as the content.
 - Improve HOW existing experience is expressed — stronger verbs, better structure, measurable results
 - Bridge transferable skills honestly: use framing like "cross-functional coordination applicable to complex product environments" rather than claiming direct domain experience
 - Every single bullet must follow Action + Task + Measurable Result
