@@ -116,8 +116,10 @@ function renderSection(section: ResumeSection): Paragraph[] {
     const out: Paragraph[] = [heading(section.title.toUpperCase())]
 
     if (section.type === 'experience' && Array.isArray(section.content)) {
-        for (const exp of section.content as ResumeExperience[]) {
-            out.push(...renderExperience(exp))
+        const experiences = section.content as ResumeExperience[]
+        for (let i = 0; i < experiences.length; i++) {
+            if (i > 0) out.push(spacer()) // blank line between roles
+            out.push(...renderExperience(experiences[i]))
         }
     } else if (typeof section.content === 'string') {
         for (const line of (section.content as string).split('\n').filter(Boolean)) {
@@ -138,7 +140,7 @@ function renderExperience(exp: ResumeExperience): Paragraph[] {
     // Line 1: Job Title (Bold) — extra top spacing separates roles visually
     out.push(
         new Paragraph({
-            spacing: { before: 600 },
+            spacing: { before: 80 },
             children: [
                 new TextRun({ text: exp.title || '', bold: true, size: FONT_SIZE, font: FONT }),
             ],
