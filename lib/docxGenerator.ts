@@ -150,7 +150,7 @@ function renderExperience(exp: ResumeExperience): Paragraph[] {
         new Paragraph({
             spacing: { after: 80 },
             children: [
-                new TextRun({ text: exp.company || '', bold: true, size: FONT_SIZE, font: FONT }),
+                new TextRun({ text: exp.company || '', size: FONT_SIZE, font: FONT }),
                 new TextRun({ text: `  |  ${exp.dates || ''}`, size: FONT_SIZE, font: FONT, color: '666666' }),
             ],
         })
