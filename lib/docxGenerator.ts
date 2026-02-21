@@ -138,7 +138,7 @@ function renderExperience(exp: ResumeExperience): Paragraph[] {
     // Line 1: Job Title (Bold) — extra top spacing separates roles visually
     out.push(
         new Paragraph({
-            spacing: { before: 320 },
+            spacing: { before: 600 },
             children: [
                 new TextRun({ text: exp.title || '', bold: true, size: FONT_SIZE, font: FONT }),
             ],
@@ -191,7 +191,7 @@ function body(text: string): Paragraph {
 function bullet(text: string): Paragraph {
     return new Paragraph({
         numbering: { reference: 'bullet-list', level: 0 },
-        spacing: { after: 40 },
+        spacing: { after: 80 },
         children: [new TextRun({ text, size: FONT_SIZE, font: FONT })],
     })
 }
